@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "211215525971",
+    "project_id": "proyecto-innovacion-pdm-99de0",
+    "storage_bucket": "proyecto-innovacion-pdm-99de0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211215525971:android:36dc415ee7fb425048bea6",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_innovacion_gt03_03_tema11"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA9gWwcRTW6H8nKXS7HHwuQfrYk3yPScQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
