@@ -35,13 +35,12 @@ class HomeFragment :Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        //binding.searchContainer.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        //binding.list.visibility=View.INVISIBLE
+        binding.searchContainer.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        binding.list.visibility=View.INVISIBLE
 
         return root
     }
 
-    /**
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +57,8 @@ class HomeFragment :Fragment() {
             binding.btnBack.setImageResource(R.drawable.search)
         })
 
-    }*/
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
