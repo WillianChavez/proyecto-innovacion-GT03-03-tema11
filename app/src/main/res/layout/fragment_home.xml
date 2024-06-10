@@ -81,19 +81,20 @@
           android:background="@color/white"
           android:orientation="vertical"
           android:padding="12dp"
-          android:visibility="visible"
+          android:visibility="gone"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent">
 
-         <TextView
-             android:id="@+id/titlePlace"
+         <Button
+             android:id="@+id/btnShowDatalles"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="TextView"
-             tools:visibility="visible" />
+             android:text="Ver Detalles" />
 
       </LinearLayout>
    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>
