@@ -1,5 +1,6 @@
 package com.example.proyecto_innovacion_gt03_03_tema11.ui.gallery
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ class GalleryAdapter(
     showRatingList: ArrayList<String>,
     showTypeList: ArrayList<String>,
 ): RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
+//    lateinit var context: Context
     private lateinit var ShowNameList: ArrayList<String>
     private lateinit var ShowRatingList: ArrayList<String>
     private lateinit var ShowTypeList: ArrayList<String>
@@ -22,14 +24,8 @@ class GalleryAdapter(
         this.ShowTypeList = showTypeList
     }
 
-    public class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var itemName: TextView = itemView.findViewById(R.id.tvTitle)
-        var itemRating: TextView = itemView.findViewById(R.id.tvRating)
-        var itemType: TextView = itemView.findViewById(R.id.tvType)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.fragment_gallery, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_favorites, parent, false)
         return ViewHolder(v)
     }
 
@@ -41,5 +37,11 @@ class GalleryAdapter(
 
     override fun getItemCount(): Int {
         return ShowNameList.size
+    }
+
+    public class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var itemName: TextView = itemView.findViewById(R.id.tvTitle)
+        var itemRating: TextView = itemView.findViewById(R.id.tvRating)
+        var itemType: TextView = itemView.findViewById(R.id.tvType)
     }
 }

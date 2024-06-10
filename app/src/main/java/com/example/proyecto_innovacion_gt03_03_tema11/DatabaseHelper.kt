@@ -26,6 +26,12 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 "$COLUMN_PLACE_TYPE TEXT," +
                 "$COLUMN_PLACE_LOCATION TEXT)")
         db.execSQL(CREATE_PLACE_TABLE)
+
+        val INSERT_PLACE_TABLE = "INSERT INTO $TABLE_PLACE_NAME ($COLUMN_PLACE_ID, $COLUMN_PLACE_NAME, $COLUMN_PLACE_RATING, $COLUMN_PLACE_TYPE, $COLUMN_PLACE_LOCATION) VALUES ('ChIJG_4n1vUwY48R2IF2sVYcZjk', 'Parque Cuscatlán', '4.6', 'park', '13.6987112, -89.2066641')" +
+                ", ('ChIJ38egUrMxY48RjOKFSK163uU', 'Estadio Cuscatlán', '4.5', 'stadium', '13.6810957, -89.222374')" +
+                ", ('ChIJLa6sDkEwY48R-zp_HEEQvfM', 'Monumento al Divino Salvador del Mundo', '4.5', 'tourist_attraction', '13.7013266, -89.2244339')" +
+                ", ('ChIJD149EC8wY48RsRH7ZAbWyyM', 'Presidente Plaza', '4.4', 'shopping_mall', '13.6914481, -89.24080110000001')"
+        db.execSQL(INSERT_PLACE_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -44,23 +50,21 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(COLUMN_PLACE_LOCATION, location)
 
         val result = db.insert(TABLE_PLACE_NAME, null, values)
-        return result
         db.close()
+        return result
     }
 
     fun showPlace(): ArrayList<Gallery> {
         val placeList = ArrayList<Gallery>()
-        val selectQuery = "SELECT * FROM $TABLE_PLACE_NAME"
+        val selectQuery = "SELECT $COLUMN_PLACE_NAME, $COLUMN_PLACE_RATING, $COLUMN_PLACE_TYPE FROM $TABLE_PLACE_NAME"
         val db = this.readableDatabase
         val cursor = db.rawQuery(selectQuery, null)
 
         while (cursor.moveToNext()) {
-            val id = cursor.getString(0)
-            val name = cursor.getString(1)
-            val rating = cursor.getString(2)
-            val type = cursor.getString(3)
-            val location = cursor.getString(4)
-            val gallery = Gallery(name, rating, type, id, location)
+            val name = cursor.getString(0)
+            val rating = cursor.getString(1)
+            val type = cursor.getString(2)
+            val gallery = Gallery(name, rating, type)
             placeList.add(gallery)
         }
 

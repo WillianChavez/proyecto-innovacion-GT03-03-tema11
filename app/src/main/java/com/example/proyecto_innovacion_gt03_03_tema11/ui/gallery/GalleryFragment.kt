@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto_innovacion_gt03_03_tema11.DatabaseHelper
+import com.example.proyecto_innovacion_gt03_03_tema11.R
 import com.example.proyecto_innovacion_gt03_03_tema11.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
@@ -21,15 +22,6 @@ class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
 
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dbHelper = DatabaseHelper(requireContext())
-        getName = ArrayList()
-        getRating = ArrayList()
-        getType = ArrayList()
-        setData()
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -49,10 +41,31 @@ class GalleryFragment : Fragment() {
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        dbHelper = DatabaseHelper(requireContext())
+        getName = ArrayList()
+        getRating = ArrayList()
+        getType = ArrayList()
+
+        setData()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        Toast.makeText(requireContext(), "Toast para probar", Toast.LENGTH_SHORT).show()
+//        super.onCreate(savedInstanceState)
+//        dbHelper = DatabaseHelper(requireContext())
+//        getName = ArrayList()
+//        getRating = ArrayList()
+//        getType = ArrayList()
+//        setData()
+//    }
 
     private fun setData() {
         val nameList = dbHelper.showPlace()
@@ -66,7 +79,7 @@ class GalleryFragment : Fragment() {
             }
         }
 
-        val recyclerView: RecyclerView = binding.rvGallery
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.rv_gallery)
         val adapter = GalleryAdapter(getName, getRating, getType)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
