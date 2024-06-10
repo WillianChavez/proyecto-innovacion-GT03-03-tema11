@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto_innovacion_gt03_03_tema11.DatabaseHelper
 import com.example.proyecto_innovacion_gt03_03_tema11.databinding.FragmentGalleryBinding
+import es.dmoral.toasty.Toasty
 
 class GalleryFragment : Fragment() {
     private lateinit var dbHelper: DatabaseHelper
@@ -57,7 +58,7 @@ class GalleryFragment : Fragment() {
     private fun setData() {
         val nameList = dbHelper.showPlace()
         if (nameList.size == 0) {
-            return Toast.makeText(requireContext(), "Aun no tienes lugares favoritos", Toast.LENGTH_SHORT).show()
+            return Toasty.info(requireContext(), "Aun no tienes lugares favoritos", Toasty.LENGTH_SHORT).show()
         } else {
             for (place in nameList) {
                 getName.add(place.name)

@@ -53,6 +53,11 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
+    // Toasty
+    implementation("com.github.GrenderG:Toasty:1.5.2")
+
+
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:2.0.0"))
     implementation("com.google.android.libraries.places:places:3.5.0")
 
