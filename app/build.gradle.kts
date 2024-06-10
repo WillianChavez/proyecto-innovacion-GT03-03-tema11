@@ -33,8 +33,11 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
+
+
 
 dependencies {
 
@@ -49,7 +52,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.google.android.gms:play-services-maps:18.1.0")
+
+
+    // Toasty
+    implementation("com.github.GrenderG:Toasty:1.5.2")
+
+
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:2.0.0"))
+    implementation("com.google.android.libraries.places:places:3.5.0")
+
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("com.google.firebase:firebase-bom:33.1.0")
     implementation("com.google.firebase:firebase-analytics-ktx:22.0.1")
