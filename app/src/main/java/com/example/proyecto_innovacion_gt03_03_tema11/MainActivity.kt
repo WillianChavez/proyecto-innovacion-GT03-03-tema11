@@ -2,7 +2,11 @@ package com.example.proyecto_innovacion_gt03_03_tema11
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -31,6 +35,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +48,8 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback  {
     private lateinit var fragmentautocomplete: AutocompleteSupportFragment
     private var googleMap: GoogleMap? = null
     private var cardDetalles: LinearLayout? = null
-    private var titlePlace: TextView? = null
+    private var modalBottomSheet: BottomSheetDialogFragment? = null
+    private var bottonDetalles: Button? = null
 
     private var place: Place? = null
 
@@ -83,8 +89,16 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback  {
         navView.setupWithNavController(navController)
 
         cardDetalles = findViewById(R.id.cardDetalles)
-        titlePlace = findViewById(R.id.titlePlace)
 
+        bottonDetalles = findViewById(R.id.btnShowDatalles)
+        bottonDetalles?.setOnClickListener {
+
+            val modalBottomSheet = ModalBottomSheet()
+            place?.let {
+                modalBottomSheet.show(supportFragmentManager)
+                modalBottomSheet.showDetails(it)
+            }
+        }
 
         // Set up Map Fragment
         setupMapFragment()
@@ -117,8 +131,6 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback  {
                     )
 
                     cardDetalles?.visibility = LinearLayout.VISIBLE
-
-                    titlePlace?.text = place?.name
                 }
             }
         })
